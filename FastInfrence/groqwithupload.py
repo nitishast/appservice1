@@ -21,11 +21,6 @@ import time
 groq_api_key = config.GROQ_API_KEY
 pdf_directory = "./pdf_files"
 
-llm = ChatGroq(
-    groq_api_key=groq_api_key,
-    model_name="gemma-7b-it"
-)
-
 prompt = ChatPromptTemplate.from_template(
     "You are a helpful AI assistant. Answer questions based solely on the provided context. If the answer is not in the context, say 'The answer is not in the provided context.' Do not add any additional commentary or information beyond what is given.:\n\n{context}\n\nQuestion: {input}\nAnswer:"
 )
@@ -40,7 +35,7 @@ def vector_embeddings(pdf_path, is_directory=True):
         loader = PyPDFLoader(pdf_path)
     
     documents = loader.load()
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=10000, chunk_overlap=1000)
     final_documents = text_splitter.split_documents(documents)
     vector_store = FAISS.from_documents(final_documents, st.session_state.embeddings)
     
@@ -49,11 +44,10 @@ def vector_embeddings(pdf_path, is_directory=True):
     
     return vector_store, creation_time
 
-# groqmodels = ["llama-3.1-70b-versatile", "llama-3.1-8b-instant", "llama3-groq-70b-8192-tool-use-preview", "gemma-7b-it"]
-groqmodels = ["gemma-7b-it"]
+groqmodels = ["llama-3.1-70b-versatile", "llama-3.1-8b-instant", "llama3-groq-70b-8192-tool-use-preview", "gemma-7b-it"]
 
 def run():
-    st.header("High-Performance Document Interaction: Leveraging GROQ LPU for Rapid Inference")
+    st.header("High-Performance Document Interaction: Leveraging GROQ API with Gemma 7B for Rapid Inference")
 
     col1, col2 = st.columns(2)
     with col1:
@@ -89,23 +83,25 @@ def run():
         st.write("Vector Store Created from Existing Document")
         st.write(f"Time Taken to create the vector store: {st.session_state.vector_store_creation_time:.2f} seconds")
 
+    # Model selection
+    selected_model = st.selectbox("Select a model for inference:", groqmodels)
+
     prompt1 = st.text_input("Enter your question?")
 
     if prompt1 and 'vector_store' in st.session_state:
-        results = []
-        for model_name in groqmodels:
-            llm = ChatGroq(groq_api_key=groq_api_key, model_name=model_name)
-            document_chain = create_stuff_documents_chain(llm, prompt)
-            retriever = st.session_state.vector_store.as_retriever()
-            retrieval_chain = create_retrieval_chain(retriever, document_chain)
+        llm = ChatGroq(groq_api_key=groq_api_key, model_name=selected_model)
+        document_chain = create_stuff_documents_chain(llm, prompt)
+        retriever = st.session_state.vector_store.as_retriever()
+        retrieval_chain = create_retrieval_chain(retriever, document_chain)
 
-            start = time.time()
-            response = retrieval_chain.invoke({"input": prompt1})
-            end = time.time()
-            response_time = end - start
-            results.append(f"Model: {model_name}, Response: {response['answer']}")
-            st.write(f"Time taken: {response_time:.2f} seconds")
+        start = time.time()
+        response = retrieval_chain.invoke({"input": prompt1})
+        end = time.time()
+        response_time = end - start
+        
+        st.write(f"Model: {selected_model}")
+        st.write(f"Response: {response['answer']}")
+        st.write(f"Time taken: {response_time:.2f} seconds")
 
-        for result in results:
-            st.write(result)
-
+if __name__ == "__main__":
+    run()

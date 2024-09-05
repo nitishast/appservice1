@@ -3,12 +3,16 @@ from streamlit_option_menu import option_menu
 from InvoiceExtracter.invoiceExtracter import run as invoiceapp
 from TalkToYourPDF.talkToPDF import run as pdfapp
 from QnABot.QnA import run as QnA
+from QnABot.QnAUpdated import run as QnAUI
 from FastInfrence.groqapp import run as groqapp
 from FastInfrence.groqwithupload import run as groqappwithupload
 from landingpage import landingpage
-st.set_page_config(page_title="Homepage! Welcome.")
+st.set_page_config(page_title="Homepage! Welcome.",layout="wide",)
 
 st.logo("logo.jpg")
+
+
+
 st.sidebar.text("Made with ❤️ by nitishast")
 
 class MultiApp:
@@ -26,8 +30,8 @@ class MultiApp:
         with st.sidebar:
             app = option_menu(
                 menu_title='Navigation',
-                options=['Home','Invoice', 'QNA', 'Talk','GroQChat','GroQChatWithUpload'],
-                icons=['home','file-earmark-text', 'chat-dots', 'book','chat-dots','chat-dots'],
+                options=['Home','Invoice','QNAUI', 'Talk','GroQChat','GroQChatWithUpload'],
+                icons=['home','file-earmark-text','chat-dots','chat-dots', 'book','chat-dots','chat-dots'],
                 menu_icon='list',
                 default_index=0,
                 styles={
@@ -50,8 +54,10 @@ class MultiApp:
             landingpage()
         if app == 'Invoice':
             invoiceapp()
-        if app == 'QNA':
-            QnA()
+        # if app == 'QNA':
+        #     QnA()
+        if app== 'QNAUI':
+            QnAUI()
         if app == 'Talk':
             pdfapp()
         if app == 'GroQChat':
@@ -63,7 +69,8 @@ if __name__ == "__main__":
     multi_app = MultiApp()
     multi_app.add_app("Home", landingpage)
     multi_app.add_app("Invoice", invoiceapp)
-    multi_app.add_app("QNA", invoiceapp)
+    # multi_app.add_app("QNA", invoiceapp)
+    multi_app.add_app("QNAUI", QnAUI)
     multi_app.add_app("Invoice", invoiceapp)
     multi_app.add_app("GroQChat", groqapp)
     multi_app.add_app("GroQChatWithUpload", groqappwithupload)

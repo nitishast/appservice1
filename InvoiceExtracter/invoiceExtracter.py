@@ -37,7 +37,7 @@ def run():
     # st.set_page_config(page_title="Multilanguage Invoice Extracter App")
     st.header("Gemini Pro Invoice OCR")
 
-    input = st.text_input("Input Prompt:", key='input')
+    input = st.text_input("Enter the field or information you would like to know:", key='input')
     uploaded_file = st.file_uploader("Choose an image of an invoice:", 
                                      type=['jpg', 'jpeg', 'png'])
 
