@@ -14,6 +14,11 @@ def generate_response(question):
     response = chat.send_message(question, stream=True)
     return response
 
+def clear_chat_history():
+    st.session_state['chat_history'] = []
+    global chat
+    chat = model.start_chat(history=[])
+
 def run():
     st.markdown("""
     <style>
@@ -45,16 +50,23 @@ def run():
     </style>
     """, unsafe_allow_html=True)
 
-    st.title("Lets Chat!")
+    st.title("Let's Chat!")
 
     if 'chat_history' not in st.session_state:
         st.session_state['chat_history'] = []
 
     chat_container = st.container()
 
-    with st.form(key="user_input_form", clear_on_submit=True):
-        user_input = st.text_input("Ask a question:", placeholder="Type your question here")
-        submit_button = st.form_submit_button(label="Send")
+    col1, col2 = st.columns([4, 1])
+    with col1:
+        with st.form(key="user_input_form", clear_on_submit=True):
+            user_input = st.text_input("Ask a question:", placeholder="Type your question here")
+            submit_button = st.form_submit_button(label="Send")
+    with col2:
+        clear_button = st.button("Clear Chat")
+
+    if clear_button:
+        clear_chat_history()
 
     with chat_container:
         for role, text in st.session_state['chat_history']:
