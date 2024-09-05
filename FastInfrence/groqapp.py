@@ -19,9 +19,6 @@ import time
 groq_api_key = config.GROQ_API_KEY
 pdf_directory = "./pdf_files"
 
-# groqmodels = ["llama2-70b-4096","mixtral-8x7b-32768","gemma-7b-it"]
-
-
 # Load the ChatGroq LLM and pass the API key
 llm = ChatGroq(
     groq_api_key=groq_api_key,
@@ -47,6 +44,10 @@ def vector_embeddings(pdf_directory):
 
 
 
+
+# Define the list of models
+groqmodels = ["llama-3.1-70b-versatile","llama-3.1-8b-instant","llama3-groq-70b-8192-tool-use-preview","gemma-7b-it"]
+
 def run():
     st.header("High-Performance Document Interaction: Leveraging GROQ API with Gemma 7B for Rapid Inference")
 
@@ -58,24 +59,22 @@ def run():
         st.write(f"Time Taken to create the vector store: {st.session_state.vector_store_creation_time: .2f} seconds")
 
     if prompt1:
-        document_chain = create_stuff_documents_chain(llm, prompt)
-        retriever = st.session_state.vector_store.as_retriever()
-        retreival_chain = create_retrieval_chain(retriever, document_chain)
+        results = []
+        # Iterate through each model and measure response time
+        for model_name in groqmodels:
+            llm = ChatGroq(groq_api_key=groq_api_key, model_name=model_name)  # Load the model
+            document_chain = create_stuff_documents_chain(llm, prompt)
+            retriever = st.session_state.vector_store.as_retriever()
+            retrieval_chain = create_retrieval_chain(retriever, document_chain)
 
-        start = time.time()  # Change to time.time() for wall clock time
-        response = retreival_chain.invoke({"input": prompt1})
-        end = time.time()  # End timing
-        response_time = end - start
-        st.write(response["answer"])
-        st.write(f"Time taken to get response from Groq API: {response_time:.2f} seconds")
+            start = time.time()  # Start timing
+            response = retrieval_chain.invoke({"input": prompt1})
+            end = time.time()  # End timing
+            response_time = end - start
+            # Store the result
+            results.append(f"Model: {model_name}, Response: {response['answer']}, Time taken: {response_time:.2f} seconds")
 
-
-        # with a streamlit expander
-        with st.expander("Document Similiarity Search"):
-            # find the relevant chunks
-            for i,doc in enumerate(response["context"]):
-                st.write(doc.page_content)
-                st.write("--------------<><><><><><><><><>----------------")
-
-
+        # Display all results after querying all models
+        for result in results:
+            st.write(result)
 
