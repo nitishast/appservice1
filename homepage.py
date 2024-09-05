@@ -4,9 +4,12 @@ from InvoiceExtracter.invoiceExtracter import run as invoiceapp
 from TalkToYourPDF.talkToPDF import run as pdfapp
 from QnABot.QnA import run as QnA
 from FastInfrence.groqapp import run as groqapp
+from FastInfrence.groqwithupload import run as groqappwithupload
 from landingpage import landingpage
 st.set_page_config(page_title="Homepage! Welcome.")
 
+st.logo("logo.jpg")
+st.sidebar.text("Made with ❤️ by nitishast")
 
 class MultiApp:
 
@@ -23,8 +26,8 @@ class MultiApp:
         with st.sidebar:
             app = option_menu(
                 menu_title='Navigation',
-                options=['Home','Invoice', 'QNA', 'Talk','GroQChat'],
-                icons=['home','file-earmark-text', 'chat-dots', 'book','chat-dots'],
+                options=['Home','Invoice', 'QNA', 'Talk','GroQChat','GroQChatWithUpload'],
+                icons=['home','file-earmark-text', 'chat-dots', 'book','chat-dots','chat-dots'],
                 menu_icon='list',
                 default_index=0,
                 styles={
@@ -53,6 +56,8 @@ class MultiApp:
             pdfapp()
         if app == 'GroQChat':
             groqapp()
+        if app == 'GroQChatWithUpload':
+            groqappwithupload()
 
 if __name__ == "__main__":
     multi_app = MultiApp()
@@ -61,4 +66,5 @@ if __name__ == "__main__":
     multi_app.add_app("QNA", invoiceapp)
     multi_app.add_app("Invoice", invoiceapp)
     multi_app.add_app("GroQChat", groqapp)
+    multi_app.add_app("GroQChatWithUpload", groqappwithupload)
     multi_app.run()

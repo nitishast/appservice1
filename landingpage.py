@@ -14,10 +14,10 @@ def landingpage():
     Select an app from the navigation menu on the left to get started!
     """)
     
-    st.image("https://placeholder.com/600x400", caption="Our Multi-App Platform", use_column_width=True)
+    st.image("homepage.png", caption="Our Multi-App Platform", use_column_width=True)
     
     st.markdown("---")
-    st.write("© 2024 Your Company Name. All rights reserved.")
+    st.write("© 2024 IP of Nitish Asthana , nitishast@gmail.com. All rights reserved.")
     # Add a background image to the landing page using a local image file
     import base64
 
