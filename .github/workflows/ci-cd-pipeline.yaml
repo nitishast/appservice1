@@ -20,4 +20,4 @@ jobs:
       run: docker build -t nitishast/rocketapps:latest .
 
     - name: Push Docker image to Docker Hub
-      run: docker push nitishast/rocketapps:latest
+      run: docker push nitishast/rocketapps:initial
