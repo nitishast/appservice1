@@ -47,7 +47,7 @@ def vector_embeddings(pdf_path, is_directory=True):
 groqmodels = ["llama-3.1-70b-versatile", "llama-3.1-8b-instant", "llama3-groq-70b-8192-tool-use-preview", "gemma-7b-it"]
 
 def run():
-    st.header("High-Performance Document Interaction: Leveraging GROQ API with Gemma 7B for Rapid Inference")
+    st.header("High-Performance Document Interaction: Leveraging GROQ API for Rapid Inference")
 
     col1, col2 = st.columns(2)
     with col1:

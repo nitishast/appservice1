@@ -9,7 +9,7 @@ from FastInfrence.groqwithupload import run as groqappwithupload
 from landingpage import landingpage
 st.set_page_config(page_title="Homepage! Welcome.",layout="wide",)
 
-st.logo("logo.jpg")
+st.logo("public/logo.jpg")
 
 
 
