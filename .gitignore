@@ -4,3 +4,5 @@ faiss_index/
 __pycache__/
 crewai/
 taipy.py
+resources/
+QueryDatabase/

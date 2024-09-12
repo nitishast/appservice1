@@ -30,7 +30,13 @@ class MultiApp:
         with st.sidebar:
             app = option_menu(
                 menu_title='Navigation',
-                options=['Home','Invoice','QNAUI', 'Talk','GroQChat','GroQChatWithUpload'],
+                options=['Home',
+                         'Invoice Reader',
+                         'Lets Chat!', 
+                         'Talk To Your PDF',
+                        #  'GroQChat',
+                         'PDF Chat With Groq'
+                         ],
                 icons=['home','file-earmark-text','chat-dots','chat-dots', 'book','chat-dots','chat-dots'],
                 menu_icon='list',
                 default_index=0,
@@ -52,17 +58,17 @@ class MultiApp:
         
         if app == 'Home':
             landingpage()
-        if app == 'Invoice':
+        if app == 'Invoice Reader':
             invoiceapp()
         # if app == 'QNA':
         #     QnA()
-        if app== 'QNAUI':
+        if app== 'Lets Chat!':
             QnAUI()
-        if app == 'Talk':
+        if app == 'Talk To Your PDF':
             pdfapp()
-        if app == 'GroQChat':
-            groqapp()
-        if app == 'GroQChatWithUpload':
+        # if app == 'GroQChat':
+        #     groqapp()
+        if app == 'PDF Chat With Groq':
             groqappwithupload()
 
 if __name__ == "__main__":
@@ -72,6 +78,6 @@ if __name__ == "__main__":
     # multi_app.add_app("QNA", invoiceapp)
     multi_app.add_app("QNAUI", QnAUI)
     multi_app.add_app("Invoice", invoiceapp)
-    multi_app.add_app("GroQChat", groqapp)
+    # multi_app.add_app("GroQChat", groqapp)
     multi_app.add_app("GroQChatWithUpload", groqappwithupload)
     multi_app.run()

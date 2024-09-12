@@ -1,15 +1,15 @@
 import streamlit as st
 
 def landingpage():
-    st.title("Welcome to Our Multi-App Platform")
+    st.title("Welcome to Multi-App Platform")
     
     st.write("""
     This is the landing page for our versatile application suite. Here's what you can do:
     
-    - **Invoice**: Manage and process invoices efficiently
-    - **QNA**: Ask questions and get answers from our AI
-    - **Talk**: Interact with PDF documents
-    - **GroQChat**: Experience high-performance document interaction
+    - **Invoice Reader**: Read and extract information from Invoice
+    - **Lets Chat!**: Ask questions and get answers from our AI
+    - **Talk To Your PDF**: Interact with PDF documents
+    - **PDF Chat with GroQ(Faster Inference)**: Experience high-performance document interaction
     
     Select an app from the navigation menu on the left to get started!
     """)
