@@ -35,7 +35,8 @@ def get_image_in_byte(uploaded_file):
 
 def run():
     # st.set_page_config(page_title="Multilanguage Invoice Extracter App")
-    st.header("Gemini Pro Invoice OCR")
+    st.header("Upload an Invoice(Ex: GST Invoice from the web) and start asking field information")
+    st.text("Example: What is the address of the entity in the invoice?")
 
     input = st.text_input("Enter the field or information you would like to know:", key='input')
     uploaded_file = st.file_uploader("Choose an image of an invoice:", 
