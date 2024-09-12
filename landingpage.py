@@ -1,7 +1,7 @@
 import streamlit as st
 
 def landingpage():
-    st.title("Welcome to Our Multi-App Platform")
+    st.title("Welcome to Multi-App Platform")
     
     st.write("""
     This is the landing page for our versatile application suite. Here's what you can do:
