@@ -6,6 +6,7 @@ from QnABot.QnA import run as QnA
 from QnABot.QnAUpdated import run as QnAUI
 from FastInfrence.groqapp import run as groqapp
 from FastInfrence.groqwithupload import run as groqappwithupload
+from QueryDatabase.sqlapp import run as sqlapp
 from landingpage import landingpage
 st.set_page_config(page_title="Homepage! Welcome.",layout="wide",)
 
@@ -35,9 +36,10 @@ class MultiApp:
                          'Lets Chat!', 
                          'Talk To Your PDF',
                         #  'GroQChat',
-                         'PDF Chat With Groq'
+                         'PDF Chat With Groq',
+                         'Query a DB'
                          ],
-                icons=['home','file-earmark-text','chat-dots','chat-dots', 'book','chat-dots','chat-dots'],
+                icons=['home','file-earmark-text','chat-dots','chat-dots', 'book','chat-dots','chat-dots','database'],
                 menu_icon='list',
                 default_index=0,
                 styles={
@@ -70,6 +72,8 @@ class MultiApp:
         #     groqapp()
         if app == 'PDF Chat With Groq':
             groqappwithupload()
+        if app == 'Query a DB':
+            sqlapp()
 
 if __name__ == "__main__":
     multi_app = MultiApp()
@@ -80,4 +84,5 @@ if __name__ == "__main__":
     multi_app.add_app("Invoice", invoiceapp)
     # multi_app.add_app("GroQChat", groqapp)
     multi_app.add_app("GroQChatWithUpload", groqappwithupload)
+    multi_app.add_app("Query a DB", sqlapp)
     multi_app.run()

@@ -10,6 +10,7 @@ def landingpage():
     - **Lets Chat!**: Ask questions and get answers from our AI
     - **Talk To Your PDF**: Interact with PDF documents
     - **PDF Chat with GroQ(Faster Inference)**: Experience high-performance document interaction
+    - **Query a DB**: Query a Database in Natural Language
     
     Select an app from the navigation menu on the left to get started!
     """)
