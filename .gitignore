@@ -5,5 +5,5 @@ __pycache__/
 crewai/
 taipy.py
 resources/
-QueryDatabase/
+# QueryDatabase/
 temp-database/
