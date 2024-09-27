@@ -61,10 +61,24 @@ class TextToSQL:
 class SQLApp:
     def __init__(self):
         self.text_to_sql = TextToSQL()
+        self.db_path = None
 
     def run(self):
         st.header("Query Database")
-        uploaded_file = st.file_uploader("Upload a .sql file", type="sql")
+
+        col1, col2, col3 = st.columns(3)
+        
+        with col1:
+            if st.button("Download Sample Database"):
+                self.download_sample_database()
+        
+        with col2:
+            if st.button("Use Sample Database"):
+                self.use_sample_database()
+
+        with col3:
+            uploaded_file = st.file_uploader("Upload a .sql file", type="sql")
+
         input_question = st.text_input("Enter your question about the database", key="input")
         
         st.text("Here are some sample questions:")
@@ -72,12 +86,13 @@ class SQLApp:
         st.text("What are the names of the artists?")
         
         if st.button("Submit", type="primary"):
-            if uploaded_file and input_question:
+            if (uploaded_file or self.db_path) and input_question:
                 try:
-                    sql_content = uploaded_file.getvalue().decode("utf-8")
-                    db_path = self.text_to_sql.create_database_from_sql(sql_content)
+                    if uploaded_file:
+                        sql_content = uploaded_file.getvalue().decode("utf-8")
+                        self.db_path = self.text_to_sql.create_database_from_sql(sql_content)
                     
-                    if db_path:
+                    if self.db_path:
                         st.success("Connected to SQLite database")
                         schema = self.text_to_sql.get_schema()
                         if schema:
@@ -86,8 +101,7 @@ class SQLApp:
                             results = self.text_to_sql.query_database(sql_query)
                             if results:
                                 st.write("Query Results:")
-                                for row in results:
-                                    st.write(row)
+                                st.table(results)
                             else:
                                 st.warning("No results returned from the query.")
                         else:
@@ -97,8 +111,22 @@ class SQLApp:
                 except Exception as e:
                     st.error(str(e))
             else:
-                st.warning("Please upload an SQL file and enter a question.")
+                st.warning("Please upload an SQL file or use the sample database, and enter a question.")
 
-# if __name__ == "__main__":
-#     app = SQLApp()
-#     app.run()
+    def download_sample_database(self):
+        sample_db_path = "/Users/nitastha/Desktop/NitishFiles/Projects/SteamApps/QueryDatabase/Chinook_Sqlite.sql"  # Update this path
+        with open(sample_db_path, "r") as file:
+            st.download_button(
+                label="Download Chinook Sample Database",
+                data=file,
+                file_name="chinook.sql",
+                mime="text/plain"
+            )
+
+    def use_sample_database(self):
+        sample_db_path = "/Users/nitastha/Desktop/NitishFiles/Projects/SteamApps/QueryDatabase/Chinook_Sqlite.sql"  # Update this path
+        with open(sample_db_path, "r") as file:
+            sql_content = file.read()
+        self.db_path = self.text_to_sql.create_database_from_sql(sql_content)
+        st.success("Sample database loaded successfully!")
+

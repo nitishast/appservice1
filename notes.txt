@@ -1,0 +1,5 @@
+SQL LLM Agents - SQL DB Query
+CSV LLM+ Vector DB - Embeddings + Vector Search 
+Documents LLM-Chunking + knowledge graph + cyper Query
+RAG - GPT + Embeddings + Vector DB
+LLM knowledge graph  - 

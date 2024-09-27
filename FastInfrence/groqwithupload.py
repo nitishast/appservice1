@@ -51,9 +51,9 @@ def run():
 
     col1, col2 = st.columns(2)
     with col1:
-        use_own_doc = st.button("Use Own Document")
+        use_own_doc = st.button("Use Own Document",type="primary")
     with col2:
-        use_existing_doc = st.button("Use Existing Document")
+        use_existing_doc = st.button("Use Existing Document",type="primary")
 
     if use_own_doc:
         st.session_state.show_upload = True
@@ -62,11 +62,13 @@ def run():
 
     if 'show_upload' not in st.session_state:
         st.session_state.show_upload = False
-
+    st.text("Here are some sample questions:")
+    st.text("What is the document about?")
+    st.text("Tell me about this topic in the document?")
     if st.session_state.show_upload:
         with st.expander("Upload Your Document", expanded=True):
             uploaded_file = st.file_uploader("Upload a PDF document", type="pdf")
-            if st.button("Submit & Process"):
+            if st.button("Submit & Process",type="primary"):
                 if uploaded_file is not None:
                     with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as temp_file:
                         temp_file.write(uploaded_file.read())
@@ -103,5 +105,5 @@ def run():
         st.write(f"Response: {response['answer']}")
         st.write(f"Time taken: {response_time:.2f} seconds")
 
-if __name__ == "__main__":
-    run()
+# if __name__ == "__main__":
+#     run()

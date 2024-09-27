@@ -72,13 +72,17 @@ def run():
 
     user_question = st.text_input("Please write your question?")
 
+    st.text("Here are some sample questions:")
+    st.text("What is the document about?")
+    st.text("What are the names of the artists?")
+
     if user_question:
         user_input(user_question)
 
     with st.sidebar:
         st.title("Menu:")
         pdf_docs = st.file_uploader("Upload your PDF files and click on submit.", accept_multiple_files=True)
-        if st.button("Submit & Process"):
+        if st.button("Submit & Process",type="primary"):
             if pdf_docs:
                 with st.spinner("Processing..."):
                     # Extract text from PDFs

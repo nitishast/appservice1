@@ -15,11 +15,10 @@ def landingpage():
     Select an app from the navigation menu on the left to get started!
     """)
     
-    st.image("public/homepage.png", caption="Our Multi-App Platform", use_column_width=True)
+    # st.image("public/homepage.png", caption="Our Multi-App Platform", use_column_width=True)
     
     st.markdown("---")
-    st.write("© 2024 IP of Nitish Asthana , nitishast@gmail.com. All rights reserved.")
-    # Add a background image to the landing page using a local image file
+    st.write("© 2024 IP of Nitish Asthana ; All rights reserved.")
     import base64
 
     def get_base64_of_bin_file(bin_file):
@@ -40,9 +39,5 @@ def landingpage():
         ''' % bin_str
         st.markdown(page_bg_img, unsafe_allow_html=True)
 
-    # Replace 'background.png' with the actual filename of your background image
-    # set_png_as_page_bg('back.jpg')
 
-
-# No need for the if __name__ == "__main__" block here
 

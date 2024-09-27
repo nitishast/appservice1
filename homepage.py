@@ -6,14 +6,11 @@ from QnABot.QnA import run as QnA
 from QnABot.QnAUpdated import run as QnAUI
 from FastInfrence.groqapp import run as groqapp
 from FastInfrence.groqwithupload import run as groqappwithupload
-from QueryDatabase.sqlapp import run as sqlapp
+from QueryDatabase.sqlappmain import SQLApp
 from landingpage import landingpage
+
 st.set_page_config(page_title="Homepage! Welcome.",layout="wide",)
-
 st.logo("public/logo.jpg")
-
-
-
 st.sidebar.text("Made with ❤️ by nitishast")
 
 class MultiApp:
@@ -73,7 +70,8 @@ class MultiApp:
         if app == 'PDF Chat With Groq':
             groqappwithupload()
         if app == 'Query a DB':
-            sqlapp()
+            sql_app = SQLApp()
+            sql_app.run()
 
 if __name__ == "__main__":
     multi_app = MultiApp()
@@ -84,5 +82,5 @@ if __name__ == "__main__":
     multi_app.add_app("Invoice", invoiceapp)
     # multi_app.add_app("GroQChat", groqapp)
     multi_app.add_app("GroQChatWithUpload", groqappwithupload)
-    multi_app.add_app("Query a DB", sqlapp)
+    multi_app.add_app("Query a DB", lambda: SQLApp.run())
     multi_app.run()
