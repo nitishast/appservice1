@@ -11,7 +11,7 @@ from landingpage import landingpage
 
 st.set_page_config(page_title="Homepage! Welcome.",layout="wide",)
 st.logo("public/logo.jpg")
-st.sidebar.text("Made with ❤️ by nitishast")
+st.sidebar.text("Made with ❤️ by nitish")
 
 class MultiApp:
 
