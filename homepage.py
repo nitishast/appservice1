@@ -29,8 +29,8 @@ class MultiApp:
             app = option_menu(
                 menu_title='Navigation',
                 options=['Home',
+                         'Lets Chat!',
                          'Invoice Reader',
-                         'Lets Chat!', 
                          'Talk To Your PDF',
                         #  'GroQChat',
                          'PDF Chat With Groq',
