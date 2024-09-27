@@ -36,7 +36,7 @@ class MultiApp:
                          'PDF Chat With Groq',
                          'Query a DB'
                          ],
-                icons=['home','file-earmark-text','chat-dots','chat-dots', 'book','chat-dots','chat-dots','database'],
+                icons=['house','file-earmark-text','chat-dots','chat-dots', 'book','chat-dots','chat-dots','database'],
                 menu_icon='list',
                 default_index=0,
                 styles={
