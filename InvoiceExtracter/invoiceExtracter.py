@@ -38,7 +38,7 @@ def run():
     st.text("Example: What is the address of the entity in the invoice?")
 
     
-    sample_invoice_path = "gst image.jpg"  # Update this path
+    sample_invoice_path = "InvoiceExtracter/gst image.jpg"  # Update this path
     if os.path.exists(sample_invoice_path):
         with open(sample_invoice_path, "rb") as file:
             st.download_button(
