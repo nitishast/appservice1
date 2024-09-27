@@ -142,7 +142,3 @@ class SQLApp:
             st.success("Uploaded database loaded successfully!")
         except Exception as e:
             st.error(f"An error occurred while loading the uploaded database: {str(e)}")
-
-# if __name__ == "__main__":
-#     app = SQLApp()
-#     app.run()
