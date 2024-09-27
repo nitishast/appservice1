@@ -10,9 +10,15 @@ genai.configure(api_key=api_key)
 model = genai.GenerativeModel(chat_model)
 chat = model.start_chat(history=[])
 
+# def generate_response(question):
+#     response = chat.send_message(question, stream=True)
+#     return response
+
 def generate_response(question):
-    response = chat.send_message(question, stream=True)
+    prompt = "Provide a brief and concise answer in 1 or 2 sentences only: " + question
+    response = chat.send_message(prompt, stream=True, max_output_tokens=50)
     return response
+
 
 def run():
     # st.set_page_config(page_title="Conversational Gemini Bot")
