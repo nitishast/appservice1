@@ -114,7 +114,7 @@ class SQLApp:
                 st.warning("Please upload an SQL file or use the sample database, and enter a question.")
 
     def download_sample_database(self):
-        sample_db_path = "/Users/nitastha/Desktop/NitishFiles/Projects/SteamApps/QueryDatabase/Chinook_Sqlite.sql"  # Update this path
+        sample_db_path = "Chinook_Sqlite.sql"  # Update this path
         with open(sample_db_path, "r") as file:
             st.download_button(
                 label="Download Chinook Sample Database",
@@ -124,7 +124,7 @@ class SQLApp:
             )
 
     def use_sample_database(self):
-        sample_db_path = "/Users/nitastha/Desktop/NitishFiles/Projects/SteamApps/QueryDatabase/Chinook_Sqlite.sql"  # Update this path
+        sample_db_path = "Chinook_Sqlite.sql"  # Update this path
         with open(sample_db_path, "r") as file:
             sql_content = file.read()
         self.db_path = self.text_to_sql.create_database_from_sql(sql_content)
