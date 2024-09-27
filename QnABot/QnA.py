@@ -15,10 +15,10 @@ chat = model.start_chat(history=[])
 #     return response
 
 def generate_response(question):
-    prompt = "Provide a brief and concise answer in 1 or 2 sentences only: " + question
-    response = chat.send_message(prompt, stream=True, max_output_tokens=50)
-    return response
-
+    response = chat.send_message(question, stream=True)
+    # Prompt the model to generate a concise summary of the response
+    concise_response = model.generate_text(prompt="Summarize the following text concisely:", text=response.text)
+    return concise_response.text
 
 def run():
     # st.set_page_config(page_title="Conversational Gemini Bot")

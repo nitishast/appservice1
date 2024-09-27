@@ -69,11 +69,11 @@ class SQLApp:
         col1, col2, col3 = st.columns(3)
         
         with col1:
-            if st.button("Download Sample Database"):
+            if st.button("Download Sample Database",type="primary"):
                 self.download_sample_database()
         
         with col2:
-            if st.button("Use Sample Database"):
+            if st.button("Use Sample Database",type="primary"):
                 self.use_sample_database()
 
         with col3:
