@@ -3,3 +3,15 @@ CSV LLM+ Vector DB - Embeddings + Vector Search
 Documents LLM-Chunking + knowledge graph + cyper Query
 RAG - GPT + Embeddings + Vector DB
 LLM knowledge graph  - 
+
+
+Adobe Trainings:
+		a. Adobe Experience Platform (AEP) – 1 hour - Introduction to Adobe Experience Platform | Adobe Experience Cloud - https://experienceleague.adobe.com/en/playlists/experience-platform-introduction
+		b. Real-Time Customer Data Platform As a part of transition to ME, the Skyrocket development team has to train on the following AEP video topics so they can successful support future AEP integration efforts:(CDP) – 50 minutes - Getting started with Real-time CDP, B2B Edition for marketers | Adobe Experience Cloud
+https://experienceleague.adobe.com/en/playlists/real-time-customer-data-platform-get-started-with-real-time-cdp-b2b-edition-for-marketers
+		c. Adobe Journey Optimizer (AJO) – 2 hour 15 mins - Get started with Journey Optimizer for Journey Administrators and Managers | Adobe Experience Cloud
+https://experienceleague.adobe.com/en/playlists/journey-optimizer-getting-started-for-journey-administrators-and-managers
+		d. Customer Journey Analytics (CJA) – 1 hour 15 mins - Getting Started with Customer Journey Analytics for Users | Adobe Experience Cloud
+https://experienceleague.adobe.com/en/playlists/customer-journey-analytics-create-filters-and-cross-channel-visualizations
+
+
